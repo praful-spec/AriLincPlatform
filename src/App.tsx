@@ -469,7 +469,7 @@ function SignInScreen({ onSubmit }) {
 //  MAIN APP
 // ================================================================
 export default function AriLincPlatform() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ name: "Guest", company: "AriPrus" });
   const [section, setSection] = useState("agents");
 
   // ── Agents state ──
@@ -565,7 +565,9 @@ export default function AriLincPlatform() {
     { key:"overview", icon:"🏠", label:"Overview" },
   ];
 
-  if(!user) return <SignInScreen onSubmit={setUser}/>;
+  // Sign-in gate removed — the app now loads directly into the dashboard.
+  // SignInScreen is left defined above (unused) in case you want to
+  // reinstate a gate later; it's simply no longer rendered here.
 
   return (
     <div style={{background:BRAND.grey,minHeight:"100vh",color:BRAND.text,fontFamily:"Inter,sans-serif"}}>
@@ -603,8 +605,6 @@ export default function AriLincPlatform() {
           <span style={{background:`${BRAND.cyan}15`,color:BRAND.cyan,border:`1px solid ${BRAND.cyan}40`,borderRadius:4,padding:"2px 8px",fontSize:11,fontWeight:700}}>PLATFORM</span>
         </div>
         <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <div style={{fontSize:12,color:BRAND.light}}>👋 {user.name} · {user.company}</div>
-          <button onClick={()=>setUser(null)} style={{fontSize:11,color:BRAND.light,background:"none",border:`1px solid ${BRAND.border}`,borderRadius:6,padding:"4px 10px",cursor:"pointer"}}>Sign Out</button>
         </div>
       </div>
 
